@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
+import store from "../../../data";
+import { setUser } from "../../../data/actions"; 
+
+import { connect } from "react-redux";
+
 
 class Profile extends Component {
 
 	constructor(props){
 		super(props);
-		this.state = {
-			name: props.user.name,
-			email: props.user.email,
-			login: props.user.login ,
-			bio: props.user.bio,
-			avatarUrl: props.user.avatarUrl,
-			websiteUrl: props.user.websiteUrl,
-			company: props.user.company,
-			url: props.user.url,
-			location: props.user.location
-		};
-		
 	}
 	
 	render(){
-		const {name, email, login, bio, avatarUrl, websiteUrl, company, url, location} = this.state;
+		const {name, email, login, bio, avatarUrl, websiteUrl, company, url, location} = this.props.profile;
 		return (
 			<div>
 				<p>{name}</p>
@@ -36,4 +29,4 @@ class Profile extends Component {
 
 }
 
-export default Profile;
+export default Profile

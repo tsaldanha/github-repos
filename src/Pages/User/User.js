@@ -4,10 +4,15 @@ import { withRouter, Link } from 'react-router-dom';
 import Profile from './profile';
 import RepoList from './repoList';
 
+import store from "../../data";
+import { setUser, setRepositories, setData } from "../../data/actions"; 
+
+import { connect } from "react-redux";
+
 const axiosGitHubGraphQL = axios.create({
   baseURL: 'https://api.github.com/graphql',
   headers: {
-    Authorization: 'bearer b53f7480622f639e278f82e6bf83269843c9b658'
+    Authorization: 'bearer 4cf4e3c2c1e79f6b202a4c475c51ed40e944258d'
   }
 });
 
@@ -27,7 +32,8 @@ const GET_ORGANIZATION = `
       edges {
         node {
           id
-          name
+          name,
+          description,
           ref(qualifiedName: "master") {
             target {
               ... on Commit {
@@ -53,23 +59,27 @@ const GET_ORGANIZATION = `
 
 `;
 
+function mapDispatchToProps(dispatch){
+  return{
+    setUser: user => dispatch(setUser(user)),
+    setRepositories: repositories => dispatch(setRepositories(repositories)),
+    setData: data => dispatch(setData(data))
+  }
+}
+function mapStateToProps(state) {
+  const { user, repositories } = state;
+  return { 
+    user: user , 
+    repositories: repositories
+  }
+}
+
 class User extends Component {
 
-  state = {
-    path: 'tsaldanha',
-    organization: null,
-    errors: null,
-    name: null,
-    repositories: null
-  };
 
   componentDidMount() {
     this.onFetchFromGitHub();
   }
-
-  onChange = event => {
-    this.setState({ path: event.target.value });
-  };
 
   onSubmit = event => {
     // fetch data
@@ -80,8 +90,8 @@ class User extends Component {
   onFetchFromGitHub = () => {
     axiosGitHubGraphQL
       .post('', { query: GET_ORGANIZATION })
-      .then(result =>
-        this.setState(() => ({
+      .then(result => {
+        this.props.setData({
           user: {
             name: result.data.data.user.name,
             email: result.data.data.user.email,
@@ -93,21 +103,19 @@ class User extends Component {
             url: result.data.data.user.url,
             location: result.data.data.user.location,
           },
-          repositories: result.data.data.user.repositories.edges,
-          errors: result.data.errors,
-        })),
-      );
+          repositories: result.data.data.user.repositories.edges
+        });
+      });
   }
 
   render(){
-    const { path, user, repositories, errors } = this.state;
     return (
         <div>
-          {user ? (
+          {this.props.user.name ? (
             <div>
-              <Profile user={user} />
+              <Profile profile={this.props.user} />
               <hr/>
-              <RepoList list={repositories}/>
+                <RepoList list={this.props.repositories}/>
             </div>
             ):(
             <p>Carregando</p>
@@ -118,5 +126,6 @@ class User extends Component {
   }
 }
 
+const USER = connect(mapStateToProps, mapDispatchToProps)(User);
 
-export default withRouter(User);
+export default withRouter(USER);
