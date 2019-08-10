@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Commits from '../commits';
 
 class SearchFilter extends Component {
 

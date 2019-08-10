@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Profile from './profile';
 import RepoList from './repoList';
 
-import store from "../../data";
 import { setUser, setRepositories, setData } from "../../data/actions"; 
 
 import { connect } from "react-redux";
-
-console.log(process.env.REACT_APP_GITHUBKEY);
 
 const axiosGitHubGraphQL = axios.create({
   baseURL: 'https://api.github.com/graphql',

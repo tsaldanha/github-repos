@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 class RepoList extends Component {
-	constructor(props){
-		super(props);
-	}
+
 	render(){
 		let list = this.props.list;
 		return(
