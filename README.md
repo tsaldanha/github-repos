@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 `npm install`
  
 ### Github personal key is necessary! 
-Create a .env file in the root folder of this project with the `REACT_APP_REACT_APP_GITHUBKEY` variable with your key. This is mandatory to make requests to github graphql api.
+Create a .env file in the root folder of this project with the `REACT_APP_GITHUBKEY` variable with your key. This is mandatory to make requests to github graphql api.
 
 ### ES6 Features
 
