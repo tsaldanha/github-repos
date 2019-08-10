@@ -10,9 +10,9 @@ Create a .env file in the root folder of this project with the `REACT_APP_REACT_
 
 ### ES6 Features
 
-Desconstruction assigment
-Classes
-String search
+- Desconstruction assigment
+- Classes
+- String search
 
 ## Available Scripts
 
