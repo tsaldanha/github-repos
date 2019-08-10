@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import RepoCard from './repo-card';
 import SearchFilter from './search-filter';
+import Profile from '../User/profile';
 
 import store from "../../data";
 import { connect } from "react-redux";
@@ -42,9 +43,10 @@ class Repository extends Component {
 
 	render(){
 		const { name, description, commits } = this.state;
-		console.log(this.state)
+		
 		return(
 			<div>
+				<Profile profile={this.props.user} />
 				{description ? (
 					<div>
 						<RepoCard name={name} description={description} />

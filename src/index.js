@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './App.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -9,7 +9,11 @@ import store from "./data/"
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<div className="section">
+			<div className="container">
+				<App />
+			</div>
+		</div>
 	</Provider>
 	, document.getElementById('root')
 );

@@ -20,16 +20,22 @@ class SearchFilter extends Component {
 	render(){
 		let commits = this.state.list.filter(
 				(commit) => {
-					return commit.node.messageHeadline.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+					return commit.node.messageHeadline.toLowerCase().includes(this.state.search.toLowerCase());
 				}
 			);
 		return (
 			<div>
-				<input type="text" id="filter" name="filter" 
+				<h3 className="title is-6">List of Commits</h3>
+				<div className="field">
+				  <div className="control">
+				    <input className="input is-small" type="text" id="filter" name="filter" 
 					placeholder="Filtre os commits pelo termo desejado" 
 					defaultValue="" 
-					onChange={this.filterCommits.bind(this)}
-				/>
+					onChange={this.filterCommits.bind(this)} />
+				  </div>
+				</div>
+
+				
 				{commits ? (
 		          	<ul>
 						{commits.map((commit, i)=>{

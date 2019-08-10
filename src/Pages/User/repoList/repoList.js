@@ -10,6 +10,7 @@ class RepoList extends Component {
 		let list = this.props.list;
 		return(
 			<div>
+				<h2 className="title is-4"> List of Repositories </h2>
 				{list.length > 0? (
 				<ul>
 					{list.map((repo)=>{

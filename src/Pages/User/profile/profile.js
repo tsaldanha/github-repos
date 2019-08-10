@@ -14,15 +14,18 @@ class Profile extends Component {
 	render(){
 		const {name, email, login, bio, avatarUrl, websiteUrl, company, url, location} = this.props.profile;
 		return (
-			<div>
-				<p>{name}</p>
-				<img src={avatarUrl} width="50"/>
-				<p>{bio}</p>
-				<p><a href={`mailto:${email}`}> {email} </a></p>
-				<p><a href={websiteUrl}>{websiteUrl}</a></p>
-				<p>{location}</p>
-				<p>{login}</p>
-				<p>{company}</p>
+			<div className="box">
+				<article className="media">
+					<figure className="media-left">
+						<img src={avatarUrl} width="120"/>
+					</figure>
+					<div className="media-content">
+						<h2><b className="title">{name}</b> | {login}</h2> 
+						<p>{bio}</p>
+						<p><a href={`mailto:${email}`}> {email} </a></p>
+						<p>{location} | {company} | <a href={websiteUrl}>{websiteUrl}</a></p>
+					</div>				
+				</article>
 			</div>
 		);
 	}

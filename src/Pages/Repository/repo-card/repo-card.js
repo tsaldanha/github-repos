@@ -11,9 +11,11 @@ class RepoCard extends Component {
 		const {name, description} = this.props;
 		return (
 			<div>
-				<p> {name}</p>
-				<p> {description} </p>
-			</div>
+				<h2 className="title is-4">{name}</h2>
+			    <p>{description}</p>
+			    <hr/>
+			</div>  
+
 		);
 	}
 

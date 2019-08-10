@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 const axiosGitHubGraphQL = axios.create({
   baseURL: 'https://api.github.com/graphql',
   headers: {
-    Authorization: 'bearer 4cf4e3c2c1e79f6b202a4c475c51ed40e944258d'
+    Authorization: 'bearer a8878a3af00ba201a0e608b53299716a8db88f53'
   }
 });
 
@@ -113,13 +113,12 @@ class User extends Component {
         <div>
           {this.props.user.name ? (
             <div>
-              <Profile profile={this.props.user} />
-              <hr/>
-                <RepoList list={this.props.repositories}/>
+              <Profile profile={this.props.user} />              
+              <RepoList list={this.props.repositories}/>
             </div>
             ):(
             <p>Carregando</p>
-          )};
+          )}
         </div>
        
       );
