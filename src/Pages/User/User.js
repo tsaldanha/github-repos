@@ -9,10 +9,12 @@ import { setUser, setRepositories, setData } from "../../data/actions";
 
 import { connect } from "react-redux";
 
+console.log(process.env.REACT_APP_GITHUBKEY);
+
 const axiosGitHubGraphQL = axios.create({
   baseURL: 'https://api.github.com/graphql',
   headers: {
-    Authorization: 'bearer a8878a3af00ba201a0e608b53299716a8db88f53'
+    Authorization: `bearer ${process.env.REACT_APP_GITHUBKEY}`
   }
 });
 
