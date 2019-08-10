@@ -10,9 +10,9 @@ Create a .env file in the root folder of this project with the `REACT_APP_REACT_
 
 ### ES6 Features
 
-- Desconstruction assigment
-- Classes
-- String search
+- Desconstruction assigment, To get objects and arrays into new variables in a more readable way.
+- Classes, React uses ES6 classes to implement components.
+- String search, I used it instead of indexOf in the commits filter.
 
 ## Available Scripts
 
