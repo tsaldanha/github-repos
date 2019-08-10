@@ -5,8 +5,10 @@ import Profile from './profile';
 import RepoList from './repoList';
 
 import { setUser, setRepositories, setData } from "../../data/actions"; 
+import store from "../../data";
 
-import { connect } from "react-redux";
+
+import { connect, Provider } from "react-redux";
 
 const axiosGitHubGraphQL = axios.create({
   baseURL: 'https://api.github.com/graphql',
@@ -109,6 +111,7 @@ class User extends Component {
 
   render(){
     return (
+      <Provider store={store}>
         <div>
           {this.props.user.name ? (
             <div>
@@ -119,7 +122,7 @@ class User extends Component {
             <p>Carregando</p>
           )}
         </div>
-       
+       </Provider>
       );
   }
 }
