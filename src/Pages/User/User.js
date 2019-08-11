@@ -76,22 +76,24 @@ function mapStateToProps(state) {
 }
 
 class User extends Component {
-
+  state = {
+    status: "Loading..."
+  }
 
   componentDidMount() {
     this.onFetchFromGitHub();
   }
 
-  onSubmit = event => {
-    // fetch data
-
-    event.preventDefault();
-  };
-
   onFetchFromGitHub = () => {
     axiosGitHubGraphQL
       .post('', { query: GET_ORGANIZATION })
       .then(result => {
+        if(result.data.errors){
+          this.setState({
+            status: result.data.errors[0].message
+          })
+          return ;
+        }
         this.props.setData({
           user: {
             name: result.data.data.user.name,
@@ -119,7 +121,7 @@ class User extends Component {
               <RepoList list={this.props.repositories}/>
             </div>
             ):(
-            <p>Carregando</p>
+            <p>{this.state.status}</p>
           )}
         </div>
        </Provider>

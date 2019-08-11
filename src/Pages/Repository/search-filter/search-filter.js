@@ -6,22 +6,22 @@ class SearchFilter extends Component {
 		super(props);
 		this.state = {
 			list : props.list,
-			search : "",
 		}
 	}
 	
 	filterCommits(event){
+		let filteredList = this.props.list.filter(
+			(commit) => {
+				return commit.node.messageHeadline.toLowerCase().includes(event.target.value.toLowerCase());
+			}
+		);
 		this.setState({
-			search: event.target.value,
+			list: filteredList
 		});
 	}
 
 	render(){
-		let commits = this.state.list.filter(
-				(commit) => {
-					return commit.node.messageHeadline.toLowerCase().includes(this.state.search.toLowerCase());
-				}
-			);
+		
 		return (
 			<div>
 				<h3 className="title is-6">List of Commits</h3>
@@ -35,9 +35,9 @@ class SearchFilter extends Component {
 				</div>
 
 				
-				{commits ? (
+				{this.state.list ? (
 		          	<ul>
-						{commits.map((commit, i)=>{
+						{this.state.list.map((commit, i)=>{
 			            	return (<li key={i}> {commit.node.messageHeadline}</li> );
 			          	})}
 					</ul>
